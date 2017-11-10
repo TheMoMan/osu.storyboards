@@ -1,0 +1,1 @@
+Storyboard for [senya - Zetsubou no Fuchi](https://osu.ppy.sh/s/605290)
