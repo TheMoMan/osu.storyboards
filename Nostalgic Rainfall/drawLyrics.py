@@ -4,8 +4,12 @@ from builtins import *
 from PIL import Image, ImageFont, ImageDraw, ImageFilter
 
 def drawLyrics(lyrics, fontFile, folder):
+    """Generates image files for each character in the lyrics, and creates a list of
+    characters where the index is the file name. No need to regenerate files for every 
+    update so replace this function with getCharacters() after running."""
+    
     # Use Pillow to draw each character file
-    global characters, g_count
+    global characters, g_count # Should get rid of this next time
     characters = []
     g_count = 0
     for i in range(len(lyrics)):
@@ -56,6 +60,8 @@ def drawLyrics(lyrics, fontFile, folder):
             characters.append(lyrics[i])
 
 def getCharacters(lyrics):
+    """Returns a list of characters used in the lyrics where the index is the file name."""
+    
     characters = []
     for i in range(len(lyrics)):
         if lyrics[i] not in [u"　", u"\ufeff", u"\u3000", "\n"] and lyrics[i] not in characters:
