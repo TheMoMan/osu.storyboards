@@ -546,7 +546,7 @@ white.fade(0, 227979, 229070, 1, 0)
 
 lyricsFile = "lyrics.txt"
 font = "msgothic.ttc"
-folder = "E:/Extra Games/osu!/Songs/Nostalgic Rainfall/sb/lyrics/"
+folder = ".../osu!/Songs/Nostalgic Rainfall/sb/lyrics/"
 
 with open(lyricsFile, "r", encoding="utf8") as f:
     lyrics = f.readlines()
