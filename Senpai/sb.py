@@ -295,9 +295,9 @@ p.scale(0, 294688, 299873, 0.5, bgs)
 p.fade(0, 294688, 295429, 0, 1)
 
 # Trial and error to match scales of the two images
-qm = .0695
+qm = .073
 q = scene("q")
-q.scale(0, 299132, 306540, 0.5+qm, bgs+qm)
+q.scale(0, 299132, 306540, 0.5+qm, .46)
 q.fade(0, 299132, 299873, 0, 1)
 q.fade(0, 305799, 306540, 1, 0)
 
