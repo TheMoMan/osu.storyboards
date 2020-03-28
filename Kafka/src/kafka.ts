@@ -1,8 +1,6 @@
 import { Storyboard, ColourValue } from './storyboard.framework';
 import * as fs from 'fs';
 import { lyricsIntro } from './lyrics';
-import { particlesHorizontal } from './particles';
-import { ParticlesFadeParams } from './interfaces';
 
 // === Set up
 const location = fs.readFileSync('./inputs/loc.txt').toString();
@@ -55,54 +53,57 @@ night.moveY({ change: -200, changeTime: measures(8.25) });
 
 lyricsIntro(osb, lyrics, charMap);
 
-// Verse 1
-// const tenshiBg1 = osb.osbject({
-//     fileName: 'sb/tenshi/a.png',
-//     x: 480,
-//     y: 220,
-//     startTime: 18422,
-//     scale: .6,
-//     colour: [0, 0, 0]
-// });
-
-// tenshiBg1.moveY({ end: 280, endTime: 32335 });
-// tenshiBg1.fade({ end: 0, startTime: 19291 });
-// tenshiBg1.fade({ end: 1, startTime: 31465 });
-
-// const tenshi1 = osb.osbject({
-//     fileName: 'sb/tenshi/a.png',
-//     x: 480,
-//     y: 220,
-//     startTime: 18422,
-//     scale: .6,
-// });
-
-// tenshi1.fade({ start: 0, end: 1, changeTime: beats(2) });
-// tenshi1.fade({ end: 0, startTime: 31465, changeTime: beats(2) });
-// tenshi1.moveY({ end: 280, endTime: 32335 });
-
 const v1Bg = osb.osbject({
     fileName: 'sb/backgrounds/aurora_1.jpg',
-    x: 320,
+    x: 370,
     y: 240,
     startTime: 18422,
-    scale: .54
+    scale: .55
 });
 
-v1Bg.moveX({ change: -50, endTime: 51465 })
+v1Bg.moveX({ change: -100, endTime: 51465 })
 v1Bg.fade({ start: 0, end: 1, changeTime: beats(2) });
 v1Bg.fade({ end: 0, startTime: 49726, changeTime: beats(2) });
 
-const tenshi1 = osb.osbject({
-    fileName: 'sb/tenshi/b.png',
-    x: 20,
-    y: 140,
+const tenshi = osb.osbject({
+    fileName: 'sb/tenshi.png',
+    layer: 'Foreground',
+    x: 126.25,
+    y: 396.6,
     startTime: 18422,
-    scale: .8,
+    scale: 0.444444444444,
+    colour: [0, 0, 0],
+})
+
+tenshi.colour({
+    end: [255, 255, 255],
+    changeTime: beats(2),
 });
 
-tenshi1.moveX({ change: 60, endTime: 32335 });
-tenshi1.fade({ start: 0, end: 1, changeTime: beats(2) });
-tenshi1.fade({ end: 0, startTime: 31465, changeTime: beats(2) });
+tenshi.fade({
+    end: 0,
+    startTime: 108857,
+    changeTime: beats(2),
+});
+
+// Chorus 1
+
+const chorusBg = osb.osbject({
+    fileName: 'bg.jpg',
+    startTime: 49726,
+    scale: 0.444444444444,
+    fade: 0,
+});
+
+chorusBg.fade({
+    end: 1,
+    changeTime: measures(2),
+});
+
+chorusBg.fade({
+    end: 0,
+    startTime: 108857,
+    changeTime: measures(1),
+});
 
 osb.export();

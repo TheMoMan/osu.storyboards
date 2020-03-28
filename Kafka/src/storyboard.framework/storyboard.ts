@@ -22,19 +22,17 @@ export class Storyboard {
 
         const layer = osbjs.layer ? osbjs.layer : 'Background';
 
-        switch (layer.toLowerCase()) {
-            case 'background' :
-            case 'bg' :
+        switch (layer) {
+            case 'Background' :
                 this.background.push(osbject);
                 break;
-            case 'foreground' :
-            case 'fg' :
+            case 'Foreground' :
                 this.foreground.push(osbject);
                 break;
-            case 'fail' :
+            case 'Fail' :
                 this.fail.push(osbject);
                 break;
-            case 'pass' :
+            case 'Pass' :
                 this.pass.push(osbject);
                 break;
             default:

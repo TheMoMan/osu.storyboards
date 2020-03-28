@@ -7,3 +7,7 @@ export function sumTwoArrays(a: number[], b: number[]): number[] {
 
     return a;
 }
+
+export function capitaliseFirstChar(s: string) {
+    return s.charAt(0).toLocaleUpperCase() + s.slice(1);
+}
