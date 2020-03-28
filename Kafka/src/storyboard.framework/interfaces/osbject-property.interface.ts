@@ -1,4 +1,6 @@
+import { OsbjectValue } from "../types";
+
 export interface IOsbjectProperty {
-    value: number | number[],
+    value: OsbjectValue,
     time: number,
 }

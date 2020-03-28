@@ -1,7 +1,6 @@
-import { Storyboard } from "./storyboard.framework/storyboard";
-import { IOsbject } from "./storyboard.framework/interfaces";
+import { Storyboard, IOsbject } from "./storyboard.framework";
 
-export function renderLyrics(osb: Storyboard, lyrics: string[], charMap: string[]) {
+export function lyricsIntro(osb: Storyboard, lyrics: string[], charMap: string[]) {
     let kanji: number[];
     let fadeDuration: number = 600;
     let fadeOffset: number = 100;

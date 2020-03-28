@@ -1,5 +1,6 @@
-import { IOsbject, IOsbjectProperty, IOsbjectConstructor, IOsbjectFunction } from "./interfaces";
+import { IOsbject, IOsbjectProperty, IOsbjectConstructor, IOsbjectModifier } from "./interfaces";
 import { sumTwoArrays } from "./utils";
+import { OsbjectValue, OsbjectArrayValue } from "./types";
 
 export class Osbject implements IOsbject {
     private osbCode: string[];
@@ -70,7 +71,7 @@ export class Osbject implements IOsbject {
         return this._x;
     }
 
-    moveX(x: IOsbjectFunction): void {
+    moveX(x: IOsbjectModifier): void {
         this.sbFunction(x, 'MX');
     }
 
@@ -78,7 +79,7 @@ export class Osbject implements IOsbject {
         return this._y;
     }
 
-    moveY(y: IOsbjectFunction): void {
+    moveY(y: IOsbjectModifier): void {
         this.sbFunction(y, 'MY');
     }
 
@@ -86,7 +87,7 @@ export class Osbject implements IOsbject {
         return this._scale;
     }
 
-    scale(scale: IOsbjectFunction): void {
+    scale(scale: IOsbjectModifier): void {
         this.sbFunction(scale, 'S');
     }
 
@@ -94,7 +95,7 @@ export class Osbject implements IOsbject {
         return this._fade;
     }
 
-    fade(fade: IOsbjectFunction): void {
+    fade(fade: IOsbjectModifier): void {
         // console.log(this._fade)
         this.sbFunction(fade, 'F');
         // console.log(this._fade)
@@ -104,7 +105,7 @@ export class Osbject implements IOsbject {
         return this._rotation;
     }
 
-    rotate(rotation: IOsbjectFunction): void {
+    rotate(rotation: IOsbjectModifier): void {
         this.sbFunction(rotation, 'R');
     }
 
@@ -112,7 +113,7 @@ export class Osbject implements IOsbject {
         return this._colour;
     }
 
-    colour(colour: IOsbjectFunction): void {
+    colour(colour: IOsbjectModifier): void {
         this.sbFunction(colour, 'C');
     }
 
@@ -120,7 +121,7 @@ export class Osbject implements IOsbject {
         return this._vector;
     }
 
-    vector(vector: IOsbjectFunction): void {
+    vector(vector: IOsbjectModifier): void {
         this.sbFunction(vector, 'V');
     }
 
@@ -133,7 +134,7 @@ export class Osbject implements IOsbject {
         return this.osbCode.join('\n');
     }
 
-    private sbFunction(dF: IOsbjectFunction, func: string): void {
+    private sbFunction(dF: IOsbjectModifier, func: string): void {
         if ((dF.endTime != null) && (dF.changeTime != null))
             throw new Error('Can only do either endTime or changeTime (not both).');
 
@@ -167,14 +168,14 @@ export class Osbject implements IOsbject {
 
         let {time, value} = sbParameter;
 
-        if (!time || !value)
+        if (time == undefined || value == undefined)
             throw new Error();
 
         const easing: number = <number>dF.easing ?? 0;
         const startTime: number = <number>dF.startTime ?? time;
-        const endTime: number = <number>dF.endTime ?? startTime + <number>dF.changeTime;
+        const endTime: number = <number>dF.endTime ?? startTime + (<number>dF.changeTime ?? 0);
 
-        if (!Number.isInteger(startTime) || !Number.isInteger(endTime)) throw new Error(`Non-integer _time. ${startTime}, ${endTime}`);
+        if (!Number.isInteger(startTime)) throw new Error(`Non-integer _time. ${startTime}, ${endTime}`);
 
         let start: number | number[];
         let end: number | number[] | undefined;
@@ -193,15 +194,15 @@ export class Osbject implements IOsbject {
             if (end != null) endAsString = String(end);
         }
         if (['C', 'V'].includes(func)) {
-            start = dF.start ? <number[]>dF.start : <number[]>value;
+            start = dF.start ? <OsbjectArrayValue>dF.start : <OsbjectArrayValue>value;
             startAsString = start.join(',');
 
-            value = <number[]>value;
-            dF.change = <number[]>dF.change;
+            value = <OsbjectArrayValue>value;
+            dF.change = <OsbjectArrayValue>dF.change;
 
-            if (dF.end != null) end = <number[]>dF.end;
-            if (dF.change != null) end = sumTwoArrays(<number[]>dF.change, value);
-            end = <number[]>end;
+            if (dF.end != null) end = <OsbjectArrayValue>dF.end;
+            if (dF.change != null) end = sumTwoArrays(<OsbjectArrayValue>dF.change, value);
+            end = <OsbjectArrayValue>end;
 
             if (func === 'C') {
                 end.forEach(c => {
@@ -217,7 +218,7 @@ export class Osbject implements IOsbject {
 
         this.osbCode.push(code);
 
-        if (end != null) sbParameter.value = <number|number[]>end;
+        if (end != null) sbParameter.value = <OsbjectValue>end;
         sbParameter.time = endTime ? endTime : startTime;
     }
 }

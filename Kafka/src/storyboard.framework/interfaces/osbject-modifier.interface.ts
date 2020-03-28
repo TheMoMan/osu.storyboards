@@ -1,4 +1,4 @@
-export interface IOsbjectFunction {
+export interface IOsbjectModifier {
     easing?: number,
     startTime?: number,
     endTime?: number,
