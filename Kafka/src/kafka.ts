@@ -56,59 +56,53 @@ night.moveY({ change: -200, changeTime: measures(8.25) });
 lyricsIntro(osb, lyrics, charMap);
 
 // Verse 1
-const particleColours1: ColourValue[] = [
-    [255, 255, 255],
-    [150, 220, 255],
-    [54, 144, 255],
-    [146, 218, 8],
-];
+// const tenshiBg1 = osb.osbject({
+//     fileName: 'sb/tenshi/a.png',
+//     x: 480,
+//     y: 220,
+//     startTime: 18422,
+//     scale: .6,
+//     colour: [0, 0, 0]
+// });
 
-const particleFade1: ParticlesFadeParams = {
-    inTime: 16683,
-    inDuration: beats(2),
-    outTime: 31465,
-    outDuration: beats(2),
-    peaks: [0.8, 0.8],
-}
+// tenshiBg1.moveY({ end: 280, endTime: 32335 });
+// tenshiBg1.fade({ end: 0, startTime: 19291 });
+// tenshiBg1.fade({ end: 1, startTime: 31465 });
 
-particlesHorizontal(osb, {
-    fileName: 'sb/particle.png',
-    density: 5,
-    startTime: 13922,
-    endTime: 32335,
-    spawnRate: 50,
-    speeds: [180, 220],
-    scales: [0.03, 0.07],
-    colours: particleColours1,
-    fade: particleFade1,
-    translateEasing: 2,
-    deviation: [-80, 80],
-    startX: 820,
-});
+// const tenshi1 = osb.osbject({
+//     fileName: 'sb/tenshi/a.png',
+//     x: 480,
+//     y: 220,
+//     startTime: 18422,
+//     scale: .6,
+// });
 
-const tenshiBg1 = osb.osbject({
-    fileName: 'sb/tenshi/a.png',
-    x: 480,
-    y: 220,
+// tenshi1.fade({ start: 0, end: 1, changeTime: beats(2) });
+// tenshi1.fade({ end: 0, startTime: 31465, changeTime: beats(2) });
+// tenshi1.moveY({ end: 280, endTime: 32335 });
+
+const v1Bg = osb.osbject({
+    fileName: 'sb/backgrounds/aurora_1.jpg',
+    x: 320,
+    y: 240,
     startTime: 18422,
-    scale: .6,
-    colour: [0, 0, 0]
+    scale: .54
 });
 
-tenshiBg1.moveY({ end: 280, endTime: 32335 });
-tenshiBg1.fade({ end: 0, startTime: 19291 });
-tenshiBg1.fade({ end: 1, startTime: 31465 });
+v1Bg.moveX({ change: -50, endTime: 51465 })
+v1Bg.fade({ start: 0, end: 1, changeTime: beats(2) });
+v1Bg.fade({ end: 0, startTime: 49726, changeTime: beats(2) });
 
 const tenshi1 = osb.osbject({
-    fileName: 'sb/tenshi/a.png',
-    x: 480,
-    y: 220,
+    fileName: 'sb/tenshi/b.png',
+    x: 20,
+    y: 140,
     startTime: 18422,
-    scale: .6,
+    scale: .8,
 });
 
+tenshi1.moveX({ change: 60, endTime: 32335 });
 tenshi1.fade({ start: 0, end: 1, changeTime: beats(2) });
 tenshi1.fade({ end: 0, startTime: 31465, changeTime: beats(2) });
-tenshi1.moveY({ end: 280, endTime: 32335 });
 
 osb.export();
