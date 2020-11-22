@@ -3,7 +3,7 @@ import { Layer } from "../types";
 export interface IOsbjectConstructor {
   readonly fileName: string;
   readonly layer?: Layer;
-  readonly anchor?: number;
+  readonly anchor?: string;
   readonly x?: number;
   readonly y?: number;
   readonly scale?: number;
