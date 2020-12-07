@@ -162,4 +162,31 @@ export class Effects {
       });
     }
   }
+
+  public whiteFlash(start: number, inTime: number = 450, outTime: number = 217, easingIn: number = 2, easingOut: number = 1) {
+    const white = this.osb.osbject({
+      fileName: 'sb/white.png',
+      layer: 'Foreground',
+      x: 320,
+      y: 240,
+      startTime: 0,
+      fade: 0,
+    });
+
+    white.fade({
+      startTime: start - inTime,
+      endTime: start,
+      start: 0,
+      end: 1,
+      easing: easingIn ?? 0,
+    });
+
+    white.fade({
+      startTime: start,
+      endTime: start + outTime,
+      start: 1,
+      end: 0,
+      easing: easingOut ?? 0,
+    });
+  }
 }

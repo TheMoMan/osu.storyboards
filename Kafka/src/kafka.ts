@@ -151,35 +151,6 @@ const ikuBlue = osb.osbject({
   scale: 0.444444444444,
 });
 
-const tenshiBlur = osb.osbject({
-  fileName: 'sb/tenshi/blur.png',
-  layer: 'Foreground',
-  x: 126.25,
-  y: 396.8,
-  startTime: 18422,
-  scale: 0.444444444444,
-  fade: 0,
-})
-
-const ikuBlur = osb.osbject({
-  fileName: 'sb/iku/blur.png',
-  layer: 'Foreground',
-  x: 527.7,
-  y: 299.05,
-  startTime: 18422,
-  scale: 0.444444444444,
-  fade: 0,
-});
-
-const white = osb.osbject({
-  fileName: 'sb/white.png',
-  layer: 'Foreground',
-  x: 320,
-  y: 240,
-  startTime: 0,
-  fade: 0,
-});
-
 // ================================= Intro =================================
 night.fade({
   start: 0,
@@ -222,24 +193,9 @@ lyrics.intro();
 
 effects.ripple(14944);
 
-white.fade({
-  startTime: 17552,
-  endTime: 18422,
-  start: 0,
-  end: 1,
-  easing: 18,
-});
-
 // ================================= Verse 1 =================================
 
 lyrics.main();
-
-white.fade({
-  startTime: 18422,
-  endTime: 18639,
-  start: 1,
-  end: 0,
-});
 
 mainBg.fade({
   start: 0,
@@ -733,6 +689,15 @@ night2.fade({
 });
 
 lyrics.outro();
+
+// ================================= Whiteouts =================================
+ 
+effects.whiteFlash(18422, beats(2), beats(0.5), 18, 1);
+effects.whiteFlash(53204);
+effects.whiteFlash(143639);
+effects.whiteFlash(206248);
+effects.whiteFlash(230596);
+effects.whiteFlash(244509);
 
 // ==================================================================
 
