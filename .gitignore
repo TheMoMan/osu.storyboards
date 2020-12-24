@@ -1,4 +1,6 @@
 node_modules/
+.vscode/
+
 img/
 old/
 out/
