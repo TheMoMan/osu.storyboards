@@ -9,4 +9,4 @@ sandbox.ts
 *.wav
 
 __pycache__
-*.vscode
+.vscode/
