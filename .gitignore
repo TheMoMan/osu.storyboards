@@ -7,3 +7,8 @@ out/
 
 sandbox.ts
 *loc.txt
+*.mid
+*.wav
+
+__pycache__
+.vscode/
